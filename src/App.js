@@ -8,6 +8,7 @@ import ProductAccordion from './components/ProductAccordion';
 import Modal from './components/Modal';
 import ProductForm from './components/ProductForm';
 import PriceRecordForm from './components/PriceRecordForm';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
 
 function App() {
   // データ管理フック
@@ -377,6 +378,9 @@ function App() {
           isSubmitting={isSubmitting}
         />
       </Modal>
+
+      {/* PWAインストールプロンプト */}
+      <PWAInstallPrompt />
     </div>
   );
 }
