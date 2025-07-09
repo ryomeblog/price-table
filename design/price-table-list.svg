@@ -1,0 +1,112 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#f8fafc"/>
+  
+  <!-- Header -->
+  <rect x="0" y="0" width="1200" height="80" fill="#1e40af"/>
+  <text x="40" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white">底値表管理</text>
+  
+  <!-- Add Button -->
+  <rect x="1050" y="25" width="120" height="30" rx="4" fill="#10b981"/>
+  <text x="1095" y="45" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle">+ 新規追加</text>
+  
+  <!-- Search Bar -->
+  <rect x="40" y="100" width="1120" height="40" rx="8" fill="white" stroke="#d1d5db" stroke-width="1"/>
+  <text x="60" y="125" font-family="Arial, sans-serif" font-size="14" fill="#6b7280">商品名で検索...</text>
+  <circle cx="1120" cy="120" r="15" fill="#e5e7eb"/>
+  <path d="m1115 115 l10 10 m-10-10 l10 10" stroke="#6b7280" stroke-width="2" fill="none"/>
+  
+  <!-- Product Accordion 1 - Rice (Expanded) -->
+  <rect x="40" y="160" width="1120" height="50" rx="8" fill="#3b82f6"/>
+  <text x="60" y="190" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">お米</text>
+  <!-- Expand/Collapse Icon -->
+  <path d="m1120 175 l-10 10 l-10-10" stroke="white" stroke-width="2" fill="none"/>
+  
+  <!-- Rice Details Table -->
+  <rect x="40" y="210" width="1120" height="160" rx="0 0 8 8" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+  
+  <!-- Table Header -->
+  <rect x="40" y="210" width="1120" height="30" fill="#f1f5f9"/>
+  <line x1="200" y1="210" x2="200" y2="370" stroke="#e5e7eb"/>
+  <line x1="300" y1="210" x2="300" y2="370" stroke="#e5e7eb"/>
+  <line x1="400" y1="210" x2="400" y2="370" stroke="#e5e7eb"/>
+  <line x1="500" y1="210" x2="500" y2="370" stroke="#e5e7eb"/>
+  <line x1="700" y1="210" x2="700" y2="370" stroke="#e5e7eb"/>
+  <line x1="900" y1="210" x2="900" y2="370" stroke="#e5e7eb"/>
+  
+  <text x="120" y="230" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">値段</text>
+  <text x="250" y="230" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">単位</text>
+  <text x="350" y="230" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">数量</text>
+  <text x="450" y="230" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">単価</text>
+  <text x="600" y="230" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">場所</text>
+  <text x="800" y="230" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">備考</text>
+  <text x="1050" y="230" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#374151" text-anchor="middle">操作</text>
+  
+  <!-- Table Row 1 -->
+  <line x1="40" y1="240" x2="1160" y2="240" stroke="#e5e7eb"/>
+  <text x="120" y="260" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">298円</text>
+  <text x="250" y="260" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">kg</text>
+  <text x="350" y="260" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">5</text>
+  <text x="450" y="260" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">59.6円</text>
+  <text x="600" y="260" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">スーパーA</text>
+  <text x="800" y="260" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">セール中</text>
+  <!-- Edit/Delete buttons -->
+  <rect x="1000" y="250" width="30" height="20" rx="3" fill="#3b82f6"/>
+  <text x="1015" y="263" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">編集</text>
+  <rect x="1040" y="250" width="30" height="20" rx="3" fill="#ef4444"/>
+  <text x="1055" y="263" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">削除</text>
+  
+  <!-- Table Row 2 -->
+  <line x1="40" y1="270" x2="1160" y2="270" stroke="#e5e7eb"/>
+  <text x="120" y="290" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">350円</text>
+  <text x="250" y="290" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">kg</text>
+  <text x="350" y="290" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">5</text>
+  <text x="450" y="290" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">70円</text>
+  <text x="600" y="290" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">スーパーB</text>
+  <text x="800" y="290" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">通常価格</text>
+  <!-- Edit/Delete buttons -->
+  <rect x="1000" y="280" width="30" height="20" rx="3" fill="#3b82f6"/>
+  <text x="1015" y="293" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">編集</text>
+  <rect x="1040" y="280" width="30" height="20" rx="3" fill="#ef4444"/>
+  <text x="1055" y="293" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">削除</text>
+  
+  <!-- Table Row 3 -->
+  <line x1="40" y1="300" x2="1160" y2="300" stroke="#e5e7eb"/>
+  <text x="120" y="320" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">320円</text>
+  <text x="250" y="320" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">kg</text>
+  <text x="350" y="320" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">5</text>
+  <text x="450" y="320" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">64円</text>
+  <text x="600" y="320" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">スーパーC</text>
+  <text x="800" y="320" font-family="Arial, sans-serif" font-size="12" fill="#374151" text-anchor="middle">特売日のみ</text>
+  <!-- Edit/Delete buttons -->
+  <rect x="1000" y="310" width="30" height="20" rx="3" fill="#3b82f6"/>
+  <text x="1015" y="323" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">編集</text>
+  <rect x="1040" y="310" width="30" height="20" rx="3" fill="#ef4444"/>
+  <text x="1055" y="323" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">削除</text>
+  
+  <!-- Best Price Indicator -->
+  <rect x="50" y="250" width="60" height="20" rx="10" fill="#10b981"/>
+  <text x="80" y="263" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">最安値</text>
+  
+  <!-- Product Accordion 2 - Milk (Collapsed) -->
+  <rect x="40" y="390" width="1120" height="50" rx="8" fill="#6b7280"/>
+  <text x="60" y="420" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">牛乳</text>
+  <!-- Expand/Collapse Icon -->
+  <path d="m1115 405 l5 5 l5-5" stroke="white" stroke-width="2" fill="none"/>
+  
+  <!-- Product Accordion 3 - Bread (Collapsed) -->
+  <rect x="40" y="460" width="1120" height="50" rx="8" fill="#6b7280"/>
+  <text x="60" y="490" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">パン</text>
+  <!-- Expand/Collapse Icon -->
+  <path d="m1115 475 l5 5 l5-5" stroke="white" stroke-width="2" fill="none"/>
+  
+  <!-- Product Accordion 4 - Eggs (Collapsed) -->
+  <rect x="40" y="530" width="1120" height="50" rx="8" fill="#6b7280"/>
+  <text x="60" y="560" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">卵</text>
+  <!-- Expand/Collapse Icon -->
+  <path d="m1115 545 l5 5 l5-5" stroke="white" stroke-width="2" fill="none"/>
+  
+  <!-- Footer -->
+  <rect x="0" y="750" width="1200" height="50" fill="#f1f5f9"/>
+  <text x="600" y="780" font-family="Arial, sans-serif" font-size="12" fill="#6b7280" text-anchor="middle">底値表アプリ - 最安値で賢くお買い物</text>
+</svg>
