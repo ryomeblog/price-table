@@ -1,70 +1,222 @@
-# Getting Started with Create React App
+# 底値表アプリ
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+各スーパーマーケットでの商品価格を比較・記録し、最安値で購入できるように支援するWebアプリケーションです。
 
-## Available Scripts
+## 機能概要
 
-In the project directory, you can run:
+### 主要機能
+- **商品管理**: 商品の登録、編集、削除
+- **価格記録**: 各店舗での価格情報の記録・管理
+- **最安値表示**: 商品ごとの最安値を自動計算・表示
+- **検索機能**: 商品名による検索
+- **データ管理**: JSONファイルでのエクスポート・インポート
 
-### `npm start`
+### 特徴
+- **レスポンシブデザイン**: モバイル・タブレット・デスクトップに対応
+- **アコーディオン表示**: 商品ごとに価格情報を整理
+- **リアルタイム計算**: 単価の自動計算
+- **オフライン対応**: ローカルストレージによるデータ保存
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## スクリーンショット
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 一覧画面
+商品ごとにアコーディオン形式で価格情報を表示し、最安値が一目で分かります。
 
-### `npm test`
+### 入力画面
+直感的なフォームで価格情報を簡単に登録できます。
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 技術仕様
 
-### `npm run build`
+### フロントエンド
+- **React 19.1.0**: UIライブラリ
+- **Tailwind CSS 3.4.17**: CSSフレームワーク
+- **React Icons 5.5.0**: アイコンライブラリ
+- **clsx 2.1.1**: 条件付きCSS class管理
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 開発ツール
+- **ESLint**: コード品質管理
+- **Prettier**: コードフォーマット
+- **PostCSS**: CSS処理
+- **React Scripts**: 開発・ビルド環境
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### データ管理
+- **LocalStorage**: ブラウザローカルでのデータ永続化
+- **JSON**: データエクスポート・インポート形式
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## セットアップ
 
-### `npm run eject`
+### 必要な環境
+- Node.js 16.0.0 以上
+- npm 7.0.0 以上
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### インストール
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. リポジトリのクローン
+```bash
+git clone <repository-url>
+cd price-table
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. 依存関係のインストール
+```bash
+npm install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. 開発サーバーの起動
+```bash
+npm start
+```
 
-## Learn More
+4. ブラウザで `http://localhost:3000` にアクセス
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### ビルド
+```bash
+npm run build
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 使い方
 
-### Code Splitting
+### 1. 商品の追加
+1. ヘッダーの「新規追加」ボタンをクリック
+2. 商品名と説明（任意）を入力
+3. 「登録」ボタンで保存
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 2. 価格情報の追加
+1. 商品のアコーディオンを展開
+2. 「価格を追加」ボタンをクリック
+3. 価格、単位、数量、店舗名、備考を入力
+4. 「登録」ボタンで保存
 
-### Analyzing the Bundle Size
+### 3. 最安値の確認
+- 商品のアコーディオンヘッダーに最安値が表示
+- 価格記録テーブルで最安値行が緑色でハイライト
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 4. データの管理
 
-### Making a Progressive Web App
+#### エクスポート
+1. ヘッダーの「エクスポート」ボタンをクリック
+2. JSONファイルが自動ダウンロード
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### インポート
+1. ヘッダーの「インポート」ボタンをクリック
+2. JSONファイルを選択
+3. データが読み込まれ、ページがリロード
 
-### Advanced Configuration
+#### データクリア
+1. ヘッダーの「クリア」ボタンをクリック
+2. 確認ダイアログで「OK」を選択
+3. 全データが削除され、ページがリロード
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## データ構造
 
-### Deployment
+### 商品 (Product)
+```json
+{
+  "id": "string",
+  "name": "string",
+  "description": "string",
+  "createdAt": "Date",
+  "updatedAt": "Date"
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 価格記録 (PriceRecord)
+```json
+{
+  "id": "string",
+  "productId": "string",
+  "price": "number",
+  "unit": "string",
+  "quantity": "number",
+  "unitPrice": "number",
+  "store": "string",
+  "notes": "string",
+  "isOnSale": "boolean",
+  "purchaseDate": "Date",
+  "createdAt": "Date",
+  "updatedAt": "Date"
+}
+```
 
-### `npm run build` fails to minify
+## キーボードショートカット
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 全体
+- `Ctrl + Enter`: フォーム送信
+- `Esc`: モーダルを閉じる
+
+### 検索
+- 検索バーでの部分一致検索
+
+## ファイル構成
+
+```
+price-table/
+├── public/                 # 静的ファイル
+├── src/
+│   ├── components/         # Reactコンポーネント
+│   │   ├── Header.js      # ヘッダーコンポーネント
+│   │   ├── SearchBar.js   # 検索バー
+│   │   ├── ProductAccordion.js # 商品アコーディオン
+│   │   ├── Modal.js       # モーダルコンポーネント
+│   │   ├── ProductForm.js # 商品フォーム
+│   │   └── PriceRecordForm.js # 価格記録フォーム
+│   ├── hooks/             # カスタムフック
+│   │   ├── useProducts.js # 商品管理
+│   │   └── usePriceRecords.js # 価格記録管理
+│   ├── utils/             # ユーティリティ
+│   │   └── storage.js     # ストレージ管理
+│   ├── App.js            # メインアプリケーション
+│   ├── index.js          # エントリーポイント
+│   └── index.css         # グローバルスタイル
+├── design/               # 画面設計（SVG）
+├── doc/                 # ドキュメント
+└── README.md           # このファイル
+```
+
+## 開発
+
+### 利用可能なスクリプト
+
+```bash
+npm start          # 開発サーバー起動
+npm run build      # プロダクションビルド
+npm test           # テスト実行
+npm run lint       # ESLintでコードチェック
+npm run format     # Prettierでコードフォーマット
+```
+
+### コーディング規約
+- ESLint + Prettier による自動フォーマット
+- Reactフック中心の関数型コンポーネント
+- TailwindCSSによるユーティリティファーストCSS
+
+## トラブルシューティング
+
+### よくある問題
+
+#### データが保存されない
+- ブラウザのローカルストレージが無効になっていないか確認
+- プライベートブラウジングモードでないか確認
+
+#### エクスポート/インポートができない
+- ブラウザがファイルダウンロード/アップロードを許可しているか確認
+- JSONファイルの形式が正しいか確認
+
+#### 表示が崩れる
+- ブラウザキャッシュをクリア
+- 対応ブラウザ（Chrome, Firefox, Safari, Edge）を使用
+
+### サポートブラウザ
+- Chrome 90+
+
+## ライセンス
+
+MIT License
+
+## 貢献
+
+1. Fork this repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
