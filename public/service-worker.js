@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 const CACHE_NAME = 'price-table-v1';
 const urlsToCache = [
   '/',
