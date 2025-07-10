@@ -39,9 +39,9 @@ export const useProducts = () => {
   };
 
   // 商品の追加
-  const addProduct = async (name, description = '') => {
+  const addProduct = async (name, unit = '', description = '') => {
     try {
-      const newProduct = createProduct(name, description);
+      const newProduct = createProduct(name, unit, description);
       const updatedProducts = [...products, newProduct];
       setProducts(updatedProducts);
       await saveProducts(updatedProducts);

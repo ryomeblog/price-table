@@ -10,6 +10,7 @@ const ProductForm = ({
 }) => {
   const [formData, setFormData] = useState({
     name: '',
+    unit: '',
     description: '',
   });
 
@@ -20,6 +21,7 @@ const ProductForm = ({
     if (initialData) {
       setFormData({
         name: initialData.name || '',
+        unit: initialData.unit || '',
         description: initialData.description || '',
       });
     }
@@ -56,6 +58,12 @@ const ProductForm = ({
       }
     }
 
+    if (!formData.unit.trim()) {
+      newErrors.unit = '単位を入力してください';
+    }
+    if (formData.unit && formData.unit.length > 20) {
+      newErrors.unit = '単位は20文字以内で入力してください';
+    }
     if (formData.description && formData.description.length > 500) {
       newErrors.description = '商品説明は500文字以内で入力してください';
     }
@@ -74,6 +82,7 @@ const ProductForm = ({
 
     const submitData = {
       name: formData.name.trim(),
+      unit: formData.unit.trim(),
       description: formData.description.trim(),
     };
 
@@ -127,6 +136,38 @@ const ProductForm = ({
           )}
           <span className="text-xs text-gray-400">
             {formData.name.length}/100
+          </span>
+        </div>
+      </div>
+
+      {/* 単位 */}
+      <div>
+        <label className="mb-1 block text-sm font-medium text-gray-700">
+          単位 <span className="text-red-500">*</span>
+        </label>
+        <input
+          type="text"
+          value={formData.unit}
+          onChange={(e) => handleInputChange('unit', e.target.value)}
+          className={clsx(
+            'block w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-1',
+            errors.unit
+              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+              : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
+          )}
+          placeholder="例：kg, 本, 袋"
+          maxLength={20}
+        />
+        <div className="mt-1 flex justify-between">
+          {errors.unit ? (
+            <p className="text-xs text-red-600">{errors.unit}</p>
+          ) : (
+            <p className="text-xs text-gray-500">
+              商品の単位を入力してください（例：kg, 本, 袋）
+            </p>
+          )}
+          <span className="text-xs text-gray-400">
+            {formData.unit.length}/20
           </span>
         </div>
       </div>

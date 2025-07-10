@@ -6,6 +6,7 @@ const PriceRecordForm = ({
   initialData = null,
   productId,
   productName,
+  unit,
   frequentStores = [],
   onSubmit,
   onCancel,
@@ -13,7 +14,6 @@ const PriceRecordForm = ({
 }) => {
   const [formData, setFormData] = useState({
     price: '',
-    unit: '',
     quantity: '',
     store: '',
     notes: '',
@@ -29,7 +29,6 @@ const PriceRecordForm = ({
     if (initialData) {
       setFormData({
         price: initialData.price?.toString() || '',
-        unit: initialData.unit || '',
         quantity: initialData.quantity?.toString() || '',
         store: initialData.store || '',
         notes: initialData.notes || '',
@@ -65,9 +64,7 @@ const PriceRecordForm = ({
       newErrors.price = '価格を正しく入力してください';
     }
 
-    if (!formData.unit.trim()) {
-      newErrors.unit = '単位を入力してください';
-    }
+    // 単位のバリデーションは不要（商品側で管理）
 
     if (!formData.quantity || parseFloat(formData.quantity) <= 0) {
       newErrors.quantity = '数量を正しく入力してください';
@@ -133,7 +130,7 @@ const PriceRecordForm = ({
         </div>
       )}
 
-      {/* 価格・単位・数量の行 */}
+      {/* 価格・数量・単価の行 */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         {/* 価格 */}
         <div>
@@ -164,26 +161,14 @@ const PriceRecordForm = ({
           )}
         </div>
 
-        {/* 単位 */}
+        {/* 商品単位（表示のみ） */}
         <div>
           <label className="mb-1 block text-sm font-medium text-gray-700">
-            単位 <span className="text-red-500">*</span>
+            単位
           </label>
-          <input
-            type="text"
-            value={formData.unit}
-            onChange={(e) => handleInputChange('unit', e.target.value)}
-            className={clsx(
-              'block w-full rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-1',
-              errors.unit
-                ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
-                : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
-            )}
-            placeholder="kg"
-          />
-          {errors.unit && (
-            <p className="mt-1 text-xs text-red-600">{errors.unit}</p>
-          )}
+          <div className="rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900">
+            {unit ? unit : '-'}
+          </div>
         </div>
 
         {/* 数量 */}

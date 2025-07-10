@@ -162,11 +162,12 @@ class StorageManager {
 export const storageManager = new StorageManager();
 
 // エンティティファクトリー関数
-export const createProduct = (name, description = '') => {
+export const createProduct = (name, unit = '', description = '') => {
   const now = new Date();
   return {
     id: generateId(),
     name: name.trim(),
+    unit: unit.trim(),
     description: description.trim(),
     createdAt: now,
     updatedAt: now,
@@ -176,7 +177,6 @@ export const createProduct = (name, description = '') => {
 export const createPriceRecord = (
   productId,
   price,
-  unit,
   quantity,
   store,
   notes = '',
@@ -188,7 +188,6 @@ export const createPriceRecord = (
     id: generateId(),
     productId,
     price: Number(price),
-    unit: unit.trim(),
     quantity: Number(quantity),
     unitPrice: Number((price / quantity).toFixed(2)),
     store: store.trim(),

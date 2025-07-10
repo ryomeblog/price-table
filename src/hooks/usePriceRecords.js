@@ -42,7 +42,6 @@ export const usePriceRecords = () => {
   const addPriceRecord = async (
     productId,
     price,
-    unit,
     quantity,
     store,
     notes = '',
@@ -53,7 +52,6 @@ export const usePriceRecords = () => {
       const newRecord = createPriceRecord(
         productId,
         price,
-        unit,
         quantity,
         store,
         notes,

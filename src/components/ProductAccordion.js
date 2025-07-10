@@ -147,13 +147,13 @@ const ProductAccordion = ({
                           </div>
                         </td>
                         <td className="px-4 py-3 text-sm text-gray-900">
-                          {record.unit}
+                          {product.unit}
                         </td>
                         <td className="px-4 py-3 text-sm text-gray-900">
                           {record.quantity}
                         </td>
                         <td className="px-4 py-3 text-sm font-medium text-gray-900">
-                          {formatPrice(record.unitPrice)}/{record.unit}
+                          {formatPrice(record.unitPrice)}/{product.unit}
                         </td>
                         <td className="px-4 py-3 text-sm text-gray-900">
                           {record.store}

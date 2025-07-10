@@ -85,7 +85,11 @@ function App() {
         await updateProduct(productIdOrData, updates);
       } else {
         // 新規追加
-        await addProduct(productIdOrData.name, productIdOrData.description);
+        await addProduct(
+          productIdOrData.name,
+          productIdOrData.unit,
+          productIdOrData.description
+        );
       }
 
       setIsProductModalOpen(false);
@@ -139,7 +143,6 @@ function App() {
         await addPriceRecord(
           productIdOrRecordId,
           data.price,
-          data.unit,
           data.quantity,
           data.store,
           data.notes,
@@ -372,6 +375,7 @@ function App() {
           initialData={editingPriceRecord}
           productId={selectedProductForPrice?.id}
           productName={selectedProductForPrice?.name}
+          unit={selectedProductForPrice?.unit}
           frequentStores={frequentStores}
           onSubmit={handlePriceRecordSubmit}
           onCancel={handleCloseModal}
