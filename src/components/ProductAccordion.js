@@ -55,8 +55,7 @@ const ProductAccordion = ({
           {/* 最安値表示 */}
           {cheapestPrice && (
             <span className="rounded-full bg-green-500 px-2 py-1 text-xs font-medium text-white">
-              最安値: {formatPrice(cheapestPrice.unitPrice)}/
-              {cheapestPrice.unit}
+              最安値: {formatPrice(cheapestPrice.unitPrice)}/{product.unit}
             </span>
           )}
 
