@@ -133,19 +133,16 @@ const ProductAccordion = ({
                       <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                         値段
                       </th>
-                      <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                        単位
-                      </th>
-                      <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                      <th className="min-w-[5em] px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                         数量
                       </th>
                       <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                         単価
                       </th>
-                      <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                      <th className="min-w-[10em] px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
                         店舗
                       </th>
-                      <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
+                      <th className="hidden px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 md:table-cell">
                         備考
                       </th>
                       <th className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
@@ -184,21 +181,19 @@ const ProductAccordion = ({
                               )}
                             </div>
                           </td>
-                          <td className="px-4 py-3 text-sm text-gray-900">
-                            {product.unit}
-                          </td>
-                          <td className="px-4 py-3 text-sm text-gray-900">
+                          <td className="min-w-[2em] px-4 py-3 text-sm text-gray-900">
                             {record.quantity}
+                            {product.unit}
                           </td>
                           <td className="px-4 py-3 text-sm font-medium text-gray-900">
                             {unitPrice !== ''
                               ? `${unitPrice.toFixed(4)}/${product.unit}`
                               : '-'}
                           </td>
-                          <td className="px-4 py-3 text-sm text-gray-900">
+                          <td className="min-w-[5em] px-4 py-3 text-sm text-gray-900">
                             {record.store}
                           </td>
-                          <td className="px-4 py-3 text-sm text-gray-500">
+                          <td className="hidden px-4 py-3 text-sm text-gray-500 md:table-cell">
                             {record.notes || '-'}
                           </td>
                           <td className="px-4 py-3 text-sm">
