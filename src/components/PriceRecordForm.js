@@ -2,6 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { FiCalendar, FiChevronDown } from 'react-icons/fi';
 import clsx from 'clsx';
 
+/**
+ * 小数第5位以下を切り捨てて小数第4位まで表示する関数
+ */
+function truncateTo4Decimals(num) {
+  if (isNaN(num)) return '';
+  return Math.floor(num * 10000) / 10000;
+}
+
 const PriceRecordForm = ({
   initialData = null,
   productId,
@@ -43,7 +51,9 @@ const PriceRecordForm = ({
   // 単価の自動計算
   const unitPrice =
     formData.price && formData.quantity
-      ? (parseFloat(formData.price) / parseFloat(formData.quantity)).toFixed(2)
+      ? truncateTo4Decimals(
+          parseFloat(formData.price) / parseFloat(formData.quantity)
+        ).toFixed(4)
       : '';
 
   // フォームデータの更新

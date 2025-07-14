@@ -7,10 +7,18 @@ import {
 } from 'react-icons/fi';
 import clsx from 'clsx';
 
+/**
+ * 小数第5位以下を切り捨てて小数第4位まで表示する関数
+ */
+function truncateTo4Decimals(num) {
+  if (isNaN(num)) return '';
+  return Math.floor(num * 10000) / 10000;
+}
+
 const ProductAccordion = ({
   product,
   priceRecords,
-  cheapestPrice,
+  // cheapestPrice, // propsからは受け取らず自前で計算
   onEditProduct,
   onDeleteProduct,
   onEditPriceRecord,
@@ -18,6 +26,25 @@ const ProductAccordion = ({
   onAddPriceRecord,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  // 単価計算（小数第4位切り捨て）
+  const calcUnitPrice = (price, quantity) => {
+    if (!price || !quantity || isNaN(price) || isNaN(quantity) || quantity == 0)
+      return '';
+    return truncateTo4Decimals(Number(price) / Number(quantity));
+  };
+
+  // 最安値レコードを計算
+  const cheapestRecord =
+    priceRecords && priceRecords.length > 0
+      ? priceRecords.reduce((minRec, rec) => {
+          const recUnit = calcUnitPrice(rec.price, rec.quantity);
+          if (recUnit === '') return minRec;
+          if (!minRec) return rec;
+          const minUnit = calcUnitPrice(minRec.price, minRec.quantity);
+          return recUnit < minUnit ? rec : minRec;
+        }, null)
+      : null;
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('ja-JP', {
@@ -53,9 +80,14 @@ const ProductAccordion = ({
 
         <div className="flex items-center gap-2">
           {/* 最安値表示 */}
-          {cheapestPrice && (
+          {cheapestRecord && (
             <span className="rounded-full bg-green-500 px-2 py-1 text-xs font-medium text-white">
-              最安値: {formatPrice(cheapestPrice.unitPrice)}/{product.unit}
+              最安値:{' '}
+              {calcUnitPrice(
+                cheapestRecord.price,
+                cheapestRecord.quantity
+              ).toFixed(4)}
+              /{product.unit}
             </span>
           )}
 
@@ -122,64 +154,74 @@ const ProductAccordion = ({
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
-                    {priceRecords.map((record) => (
-                      <tr
-                        key={record.id}
-                        className={clsx(
-                          'hover:bg-gray-50',
-                          cheapestPrice?.id === record.id && 'bg-green-50'
-                        )}
-                      >
-                        <td className="px-4 py-3 text-sm">
-                          <div className="flex items-center gap-2">
-                            {formatPrice(record.price)}
-                            {record.isOnSale && (
-                              <span className="rounded-full bg-red-100 px-2 py-1 text-xs text-red-800">
-                                セール
-                              </span>
-                            )}
-                            {cheapestPrice?.id === record.id && (
-                              <span className="rounded-full bg-green-100 px-2 py-1 text-xs text-green-800">
-                                最安値
-                              </span>
-                            )}
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 text-sm text-gray-900">
-                          {product.unit}
-                        </td>
-                        <td className="px-4 py-3 text-sm text-gray-900">
-                          {record.quantity}
-                        </td>
-                        <td className="px-4 py-3 text-sm font-medium text-gray-900">
-                          {formatPrice(record.unitPrice)}/{product.unit}
-                        </td>
-                        <td className="px-4 py-3 text-sm text-gray-900">
-                          {record.store}
-                        </td>
-                        <td className="px-4 py-3 text-sm text-gray-500">
-                          {record.notes || '-'}
-                        </td>
-                        <td className="px-4 py-3 text-sm">
-                          <div className="flex gap-2">
-                            <button
-                              onClick={() => onEditPriceRecord(record)}
-                              className="p-1 text-blue-600 hover:text-blue-800"
-                              title="編集"
-                            >
-                              <FiEdit2 className="size-4" />
-                            </button>
-                            <button
-                              onClick={() => onDeletePriceRecord(record.id)}
-                              className="p-1 text-red-600 hover:text-red-800"
-                              title="削除"
-                            >
-                              <FiTrash2 className="size-4" />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
+                    {priceRecords.map((record) => {
+                      const unitPrice = calcUnitPrice(
+                        record.price,
+                        record.quantity
+                      );
+                      const isCheapest =
+                        cheapestRecord && record.id === cheapestRecord.id;
+                      return (
+                        <tr
+                          key={record.id}
+                          className={clsx(
+                            'hover:bg-gray-50',
+                            isCheapest && 'bg-green-50'
+                          )}
+                        >
+                          <td className="px-4 py-3 text-sm">
+                            <div className="flex items-center gap-2">
+                              {formatPrice(record.price)}
+                              {record.isOnSale && (
+                                <span className="rounded-full bg-red-100 px-2 py-1 text-xs text-red-800">
+                                  セール
+                                </span>
+                              )}
+                              {isCheapest && (
+                                <span className="rounded-full bg-green-100 px-2 py-1 text-xs text-green-800">
+                                  最安値
+                                </span>
+                              )}
+                            </div>
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-900">
+                            {product.unit}
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-900">
+                            {record.quantity}
+                          </td>
+                          <td className="px-4 py-3 text-sm font-medium text-gray-900">
+                            {unitPrice !== ''
+                              ? `${unitPrice.toFixed(4)}/${product.unit}`
+                              : '-'}
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-900">
+                            {record.store}
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-500">
+                            {record.notes || '-'}
+                          </td>
+                          <td className="px-4 py-3 text-sm">
+                            <div className="flex gap-2">
+                              <button
+                                onClick={() => onEditPriceRecord(record)}
+                                className="p-1 text-blue-600 hover:text-blue-800"
+                                title="編集"
+                              >
+                                <FiEdit2 className="size-4" />
+                              </button>
+                              <button
+                                onClick={() => onDeletePriceRecord(record.id)}
+                                className="p-1 text-red-600 hover:text-red-800"
+                                title="削除"
+                              >
+                                <FiTrash2 className="size-4" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
