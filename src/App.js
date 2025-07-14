@@ -37,6 +37,8 @@ function App() {
 
   // UI状態管理
   const [searchTerm, setSearchTerm] = useState('');
+  const [searchMode, setSearchMode] = useState('product'); // 'product' or 'store'
+  const [showCheapestOnly, setShowCheapestOnly] = useState(false);
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [isPriceModalOpen, setIsPriceModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
@@ -45,7 +47,41 @@ function App() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // 検索結果の取得
-  const filteredProducts = searchProducts(searchTerm);
+  // 検索ロジック
+  let filteredProducts = [];
+  if (searchMode === 'product') {
+    filteredProducts = searchProducts(searchTerm);
+  } else if (searchMode === 'store') {
+    // 店舗名で検索
+    filteredProducts = products.filter((product) => {
+      const records = getPriceRecordsByProduct(product.id);
+      // 入力値が空なら全商品
+      if (!searchTerm) return records.length > 0;
+      // 店舗名が一致する価格記録がある商品
+      return records.some((rec) => rec.store && rec.store.includes(searchTerm));
+    });
+    // 最安値フィルター
+    if (showCheapestOnly && searchTerm) {
+      filteredProducts = filteredProducts.filter((product) => {
+        const records = getPriceRecordsByProduct(product.id);
+        // 最安値レコード
+        const cheapest = records.reduce((minRec, rec) => {
+          const unit =
+            rec.price && rec.quantity ? rec.price / rec.quantity : Infinity;
+          if (!minRec) return rec;
+          const minUnit =
+            minRec.price && minRec.quantity
+              ? minRec.price / minRec.quantity
+              : Infinity;
+          return unit < minUnit ? rec : minRec;
+        }, null);
+        // 最安値レコードが該当店舗か
+        return (
+          cheapest && cheapest.store && cheapest.store.includes(searchTerm)
+        );
+      });
+    }
+  }
 
   // よく使う店舗リストの取得
   const frequentStores = getFrequentStores(10);
@@ -289,6 +325,10 @@ function App() {
           <SearchBar
             value={searchTerm}
             onChange={setSearchTerm}
+            mode={searchMode}
+            onModeChange={setSearchMode}
+            showCheapestOnly={showCheapestOnly}
+            onShowCheapestOnly={setShowCheapestOnly}
             className="mx-auto w-full max-w-md"
           />
         </div>
