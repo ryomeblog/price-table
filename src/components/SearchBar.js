@@ -78,13 +78,9 @@ const SearchBar = ({
           <button
             type="button"
             onClick={() => onShowCheapestOnly(!showCheapestOnly)}
-            className={clsx(
-              'relative flex items-center rounded-full px-3 py-1 text-sm font-medium transition',
-              showCheapestOnly
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 text-gray-700'
-            )}
+            className="relative flex items-center focus:outline-none"
             aria-pressed={showCheapestOnly}
+            tabIndex={0}
           >
             <span
               className={clsx(
