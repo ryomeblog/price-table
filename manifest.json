@@ -21,13 +21,13 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": ".",
+  "start_url": "/price-table/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "theme_color": "#1e40af",
   "background_color": "#f8fafc",
   "categories": ["shopping", "utilities", "productivity"],
   "lang": "ja",
-  "scope": "/",
+  "scope": "/price-table/",
   "prefer_related_applications": false
 }
