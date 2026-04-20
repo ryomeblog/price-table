@@ -18,6 +18,14 @@ export const parseDate = (dateString) => {
   return new Date(dateString);
 };
 
+// ID をキーにした配列マージ（衝突時は incoming 側で上書き）
+const mergeById = (existing, incoming) => {
+  const map = new Map();
+  existing.forEach((item) => map.set(item.id, item));
+  incoming.forEach((item) => map.set(item.id, item));
+  return Array.from(map.values());
+};
+
 // ストレージ管理クラス
 class StorageManager {
   /**
@@ -112,7 +120,7 @@ class StorageManager {
   }
 
   /**
-   * JSONデータをインポート
+   * JSONデータをインポート（既存データとマージ。ID衝突時はインポート側を優先）
    * @param {string} jsonData - JSON文字列
    */
   async import(jsonData) {
@@ -124,9 +132,17 @@ class StorageManager {
         throw new Error('不正なデータ形式です');
       }
 
-      // データを保存
-      await this.save(STORAGE_KEYS.PRODUCTS, data.products);
-      await this.save(STORAGE_KEYS.PRICE_RECORDS, data.priceRecords);
+      const existingProducts = await this.load(STORAGE_KEYS.PRODUCTS);
+      const existingPriceRecords = await this.load(STORAGE_KEYS.PRICE_RECORDS);
+
+      const mergedProducts = mergeById(existingProducts, data.products);
+      const mergedPriceRecords = mergeById(
+        existingPriceRecords,
+        data.priceRecords
+      );
+
+      await this.save(STORAGE_KEYS.PRODUCTS, mergedProducts);
+      await this.save(STORAGE_KEYS.PRICE_RECORDS, mergedPriceRecords);
 
       if (data.settings) {
         await this.save(STORAGE_KEYS.APP_SETTINGS, data.settings);
