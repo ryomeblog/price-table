@@ -2,6 +2,8 @@
 export const STORAGE_KEYS = {
   PRODUCTS: 'price-table-products',
   PRICE_RECORDS: 'price-table-price-records',
+  SHOPPING_LISTS: 'price-table-shopping-lists',
+  SHOPPING_LIST_ITEMS: 'price-table-shopping-list-items',
   APP_SETTINGS: 'price-table-settings',
 };
 
@@ -56,11 +58,11 @@ class StorageManager {
       }
 
       const data = JSON.parse(serializedData);
-      // 日付フィールドを復元
+      // 日付フィールドを復元（フィールドが存在するもののみ）
       return data.map((item) => ({
         ...item,
-        createdAt: parseDate(item.createdAt),
-        updatedAt: parseDate(item.updatedAt),
+        ...(item.createdAt && { createdAt: parseDate(item.createdAt) }),
+        ...(item.updatedAt && { updatedAt: parseDate(item.updatedAt) }),
         ...(item.purchaseDate && {
           purchaseDate: parseDate(item.purchaseDate),
         }),
@@ -107,9 +109,11 @@ class StorageManager {
       const exportData = {
         products: await this.load(STORAGE_KEYS.PRODUCTS),
         priceRecords: await this.load(STORAGE_KEYS.PRICE_RECORDS),
+        shoppingLists: await this.load(STORAGE_KEYS.SHOPPING_LISTS),
+        shoppingListItems: await this.load(STORAGE_KEYS.SHOPPING_LIST_ITEMS),
         settings: await this.load(STORAGE_KEYS.APP_SETTINGS),
         exportedAt: new Date().toISOString(),
-        version: '1.0.0',
+        version: '1.1.0',
       };
 
       return JSON.stringify(exportData, null, 2);
@@ -134,15 +138,35 @@ class StorageManager {
 
       const existingProducts = await this.load(STORAGE_KEYS.PRODUCTS);
       const existingPriceRecords = await this.load(STORAGE_KEYS.PRICE_RECORDS);
+      const existingShoppingLists = await this.load(
+        STORAGE_KEYS.SHOPPING_LISTS
+      );
+      const existingShoppingListItems = await this.load(
+        STORAGE_KEYS.SHOPPING_LIST_ITEMS
+      );
 
       const mergedProducts = mergeById(existingProducts, data.products);
       const mergedPriceRecords = mergeById(
         existingPriceRecords,
         data.priceRecords
       );
+      // v1.0.0 形式のバックアップには無いため空配列を補完
+      const mergedShoppingLists = mergeById(
+        existingShoppingLists,
+        data.shoppingLists || []
+      );
+      const mergedShoppingListItems = mergeById(
+        existingShoppingListItems,
+        data.shoppingListItems || []
+      );
 
       await this.save(STORAGE_KEYS.PRODUCTS, mergedProducts);
       await this.save(STORAGE_KEYS.PRICE_RECORDS, mergedPriceRecords);
+      await this.save(STORAGE_KEYS.SHOPPING_LISTS, mergedShoppingLists);
+      await this.save(
+        STORAGE_KEYS.SHOPPING_LIST_ITEMS,
+        mergedShoppingListItems
+      );
 
       if (data.settings) {
         await this.save(STORAGE_KEYS.APP_SETTINGS, data.settings);
@@ -220,5 +244,27 @@ export const updateEntity = (entity, updates) => {
     ...entity,
     ...updates,
     updatedAt: new Date(),
+  };
+};
+
+// 買い物リスト関連ファクトリ関数
+export const createShoppingList = (name, description = '') => {
+  const now = new Date();
+  return {
+    id: generateId(),
+    name: name.trim(),
+    description: (description || '').trim(),
+    createdAt: now,
+    updatedAt: now,
+  };
+};
+
+export const createShoppingListItem = (listId, productId) => {
+  return {
+    id: generateId(),
+    listId,
+    productId,
+    checked: false,
+    createdAt: new Date(),
   };
 };

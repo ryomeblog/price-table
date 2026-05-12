@@ -9,6 +9,7 @@
 - **価格記録**: 各店舗での価格情報の記録・管理
 - **最安値表示**: 商品ごとの最安値を自動計算・表示
 - **検索機能**: 商品名による検索
+- **買い物リスト**: 底値表に登録された商品から ToDo 形式の買い物リストをグループ単位で複数作成。買ったらチェックで物理削除
 - **データ管理**: JSONファイルでのエクスポート・インポート
 
 ### 特徴
@@ -91,11 +92,18 @@ npm run build
 - 商品のアコーディオンヘッダーに最安値が表示
 - 価格記録テーブルで最安値行が緑色でハイライト
 
-### 4. データの管理
+### 4. 買い物リスト
+1. ヘッダーの「買い物リスト」ボタンで買い物リスト画面に切替（ボタンは「底値表」表示に変わります）
+2. 「新規リスト」でリストを作成。リスト名を入力し、底値表ビューから商品をチェックで選択して保存
+3. リストカードをクリックすると詳細画面（底値表と同じアコーディオンで価格情報も確認可能）
+4. 各アイテム左のチェックボックスを ON にすると「買った」とみなされ、確認後にそのアイテムを**物理削除**します（取り消し不可）
+5. リスト自体は「編集」「削除」ボタンから操作可能
+
+### 5. データの管理
 
 #### エクスポート
 1. ヘッダーの「エクスポート」ボタンをクリック
-2. JSONファイルが自動ダウンロード
+2. JSONファイルが自動ダウンロード（v1.1.0 では買い物リストも含まれます）
 
 #### インポート
 1. ヘッダーの「インポート」ボタンをクリック
@@ -108,6 +116,8 @@ npm run build
 3. 全データが削除され、ページがリロード
 
 ## データ構造
+
+詳細は `doc/データ設計.md` および `doc/買い物リスト機能設計.md` を参照してください。
 
 ### 商品 (Product)
 ```json
@@ -138,6 +148,28 @@ npm run build
 }
 ```
 
+### 買い物リスト (ShoppingList)
+```json
+{
+  "id": "string",
+  "name": "string",
+  "description": "string",
+  "createdAt": "Date",
+  "updatedAt": "Date"
+}
+```
+
+### 買い物リストアイテム (ShoppingListItem)
+```json
+{
+  "id": "string",
+  "listId": "string",
+  "productId": "string",
+  "createdAt": "Date"
+}
+```
+※「買った」操作は物理削除（論理削除ではない）。
+
 ## キーボードショートカット
 
 ### 全体
@@ -154,17 +186,22 @@ price-table/
 ├── public/                 # 静的ファイル
 ├── src/
 │   ├── components/         # Reactコンポーネント
-│   │   ├── Header.js      # ヘッダーコンポーネント
+│   │   ├── Header.js      # ヘッダーコンポーネント（ビュー切替を含む）
 │   │   ├── SearchBar.js   # 検索バー
-│   │   ├── ProductAccordion.js # 商品アコーディオン
+│   │   ├── ProductAccordion.js # 商品アコーディオン（通常/readOnly/selectable/showCheckbox の各モード）
 │   │   ├── Modal.js       # モーダルコンポーネント
 │   │   ├── ProductForm.js # 商品フォーム
-│   │   └── PriceRecordForm.js # 価格記録フォーム
+│   │   ├── PriceRecordForm.js # 価格記録フォーム
+│   │   ├── ShoppingListIndex.js  # 買い物リスト画面
+│   │   ├── ShoppingListDetail.js # 買い物リスト詳細画面（商品詳細）
+│   │   └── ShoppingListForm.js   # 買い物リスト追加・編集画面
 │   ├── hooks/             # カスタムフック
-│   │   ├── useProducts.js # 商品管理
-│   │   └── usePriceRecords.js # 価格記録管理
+│   │   ├── useProducts.js     # 商品管理
+│   │   ├── usePriceRecords.js # 価格記録管理
+│   │   └── useShoppingLists.js # 買い物リスト管理
 │   ├── utils/             # ユーティリティ
-│   │   └── storage.js     # ストレージ管理
+│   │   ├── storage.js     # ストレージ管理
+│   │   └── productFilter.js # 商品フィルタロジック（共通）
 │   ├── App.js            # メインアプリケーション
 │   ├── index.js          # エントリーポイント
 │   └── index.css         # グローバルスタイル

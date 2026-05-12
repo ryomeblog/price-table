@@ -1,0 +1,128 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="900" fill="#f8fafc"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="1200" height="80" fill="#1e40af"/>
+  <text x="40" y="50" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white">買い物リストを編集</text>
+
+  <!-- Cancel Button -->
+  <rect x="900" y="25" width="110" height="30" rx="4" fill="#64748b"/>
+  <text x="955" y="45" font-family="Arial, sans-serif" font-size="13" fill="white" text-anchor="middle">キャンセル</text>
+
+  <!-- Save Button -->
+  <rect x="1020" y="25" width="150" height="30" rx="4" fill="#10b981"/>
+  <text x="1095" y="45" font-family="Arial, sans-serif" font-size="13" fill="white" text-anchor="middle">保存</text>
+
+  <!-- List Name -->
+  <text x="40" y="115" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#374151">リスト名 <tspan fill="#ef4444">*</tspan></text>
+  <rect x="40" y="125" width="700" height="36" rx="6" fill="white" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="55" y="148" font-family="Arial, sans-serif" font-size="13" fill="#0f172a">今週末の買い物</text>
+
+  <!-- Memo -->
+  <text x="40" y="190" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#374151">メモ</text>
+  <rect x="40" y="200" width="1120" height="50" rx="6" fill="white" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="55" y="222" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8">週末のまとめ買い用</text>
+
+  <!-- Divider -->
+  <line x1="40" y1="275" x2="1160" y2="275" stroke="#e5e7eb"/>
+
+  <!-- Picker Header -->
+  <text x="40" y="305" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="#0f172a">商品を選択</text>
+  <rect x="160" y="287" width="100" height="24" rx="12" fill="#3b82f6"/>
+  <text x="210" y="304" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">5 件選択中</text>
+
+  <!-- Search Bar -->
+  <rect x="40" y="325" width="900" height="36" rx="6" fill="white" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="60" y="348" font-family="Arial, sans-serif" font-size="13" fill="#94a3b8">🔍 商品名で検索...</text>
+
+  <!-- Search Mode Dropdown -->
+  <rect x="950" y="325" width="100" height="36" rx="6" fill="white" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="965" y="348" font-family="Arial, sans-serif" font-size="13" fill="#0f172a">商品名 ▾</text>
+
+  <!-- Cheapest Toggle Hint -->
+  <rect x="1060" y="325" width="100" height="36" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="1110" y="348" font-family="Arial, sans-serif" font-size="11" fill="#64748b" text-anchor="middle">最安値のみ</text>
+
+  <!-- Product Accordion 1 (checked, collapsed) -->
+  <rect x="40" y="380" width="1120" height="50" rx="8" fill="#3b82f6"/>
+  <!-- Checkbox -->
+  <rect x="55" y="395" width="20" height="20" rx="4" fill="white" stroke="#0f172a" stroke-width="1.5"/>
+  <path d="M59 405 l5 5 l8-10" stroke="#10b981" stroke-width="2.5" fill="none"/>
+  <text x="95" y="410" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">牛乳 1L</text>
+  <text x="220" y="411" font-family="Arial, sans-serif" font-size="12" fill="white">(5件の価格情報)</text>
+  <!-- Cheapest pill -->
+  <rect x="900" y="395" width="180" height="20" rx="10" fill="#10b981"/>
+  <text x="990" y="410" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">最安値: 0.198/ml</text>
+  <path d="m1120 400 l-10 10 l-10-10" stroke="white" stroke-width="2" fill="none"/>
+
+  <!-- Product Accordion 2 (unchecked, collapsed) -->
+  <rect x="40" y="445" width="1120" height="50" rx="8" fill="#94a3b8"/>
+  <rect x="55" y="460" width="20" height="20" rx="4" fill="white" stroke="#0f172a" stroke-width="1.5"/>
+  <text x="95" y="475" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">食パン</text>
+  <text x="220" y="476" font-family="Arial, sans-serif" font-size="12" fill="white">(2件の価格情報)</text>
+  <rect x="900" y="460" width="180" height="20" rx="10" fill="#10b981"/>
+  <text x="990" y="475" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">最安値: 1.5/個</text>
+  <path d="m1115 465 l5 5 l5-5" stroke="white" stroke-width="2" fill="none"/>
+
+  <!-- Product Accordion 3 (checked, expanded) -->
+  <rect x="40" y="510" width="1120" height="50" rx="8" fill="#3b82f6"/>
+  <rect x="55" y="525" width="20" height="20" rx="4" fill="white" stroke="#0f172a" stroke-width="1.5"/>
+  <path d="M59 535 l5 5 l8-10" stroke="#10b981" stroke-width="2.5" fill="none"/>
+  <text x="95" y="540" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">卵 Lサイズ</text>
+  <text x="240" y="541" font-family="Arial, sans-serif" font-size="12" fill="white">(4件の価格情報)</text>
+  <rect x="900" y="525" width="180" height="20" rx="10" fill="#10b981"/>
+  <text x="990" y="540" font-family="Arial, sans-serif" font-size="11" fill="white" text-anchor="middle">最安値: 25.8/個</text>
+  <path d="m1120 530 l-10 10 l-10-10" stroke="white" stroke-width="2" fill="none"/>
+
+  <!-- Expanded table for 卵 -->
+  <rect x="40" y="560" width="1120" height="160" fill="white" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="40" y="560" width="1120" height="30" fill="#f1f5f9"/>
+  <text x="80" y="580" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">値段</text>
+  <text x="200" y="580" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">数量</text>
+  <text x="320" y="580" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">単価</text>
+  <text x="500" y="580" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">店舗</text>
+  <text x="800" y="580" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#374151" text-anchor="middle">備考</text>
+  <text x="1080" y="580" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#9ca3af" text-anchor="middle">（編集ボタンは非表示）</text>
+
+  <rect x="40" y="590" width="1120" height="40" fill="#ecfdf5"/>
+  <text x="80" y="615" font-family="Arial, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">258円</text>
+  <text x="200" y="615" font-family="Arial, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">10個</text>
+  <text x="320" y="615" font-family="Arial, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">25.8/個</text>
+  <text x="500" y="615" font-family="Arial, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">業務スーパー</text>
+  <text x="800" y="615" font-family="Arial, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">特売</text>
+  <rect x="115" y="601" width="56" height="20" rx="10" fill="#10b981"/>
+  <text x="143" y="615" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle">最安値</text>
+
+  <rect x="40" y="630" width="1120" height="40" fill="white"/>
+  <line x1="40" y1="630" x2="1160" y2="630" stroke="#e5e7eb"/>
+  <text x="80" y="655" font-family="Arial, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">298円</text>
+  <text x="200" y="655" font-family="Arial, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">10個</text>
+  <text x="320" y="655" font-family="Arial, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">29.8/個</text>
+  <text x="500" y="655" font-family="Arial, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">スーパーA</text>
+  <text x="800" y="655" font-family="Arial, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">-</text>
+
+  <rect x="40" y="670" width="1120" height="40" fill="white"/>
+  <line x1="40" y1="670" x2="1160" y2="670" stroke="#e5e7eb"/>
+  <text x="80" y="695" font-family="Arial, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">320円</text>
+  <text x="200" y="695" font-family="Arial, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">10個</text>
+  <text x="320" y="695" font-family="Arial, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">32.0/個</text>
+  <text x="500" y="695" font-family="Arial, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">コンビニ</text>
+  <text x="800" y="695" font-family="Arial, sans-serif" font-size="12" fill="#0f172a" text-anchor="middle">-</text>
+
+  <!-- Product Accordion 4 (unchecked, collapsed) -->
+  <rect x="40" y="725" width="1120" height="50" rx="8" fill="#94a3b8"/>
+  <rect x="55" y="740" width="20" height="20" rx="4" fill="white" stroke="#0f172a" stroke-width="1.5"/>
+  <text x="95" y="755" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">お米 5kg</text>
+  <text x="220" y="756" font-family="Arial, sans-serif" font-size="12" fill="white">(3件の価格情報)</text>
+  <path d="m1115 745 l5 5 l5-5" stroke="white" stroke-width="2" fill="none"/>
+
+  <!-- Footer Buttons -->
+  <rect x="900" y="800" width="110" height="36" rx="6" fill="#64748b"/>
+  <text x="955" y="823" font-family="Arial, sans-serif" font-size="13" fill="white" text-anchor="middle">キャンセル</text>
+  <rect x="1020" y="800" width="140" height="36" rx="6" fill="#10b981"/>
+  <text x="1090" y="823" font-family="Arial, sans-serif" font-size="13" fill="white" text-anchor="middle">保存</text>
+
+  <!-- Note -->
+  <text x="40" y="822" font-family="Arial, sans-serif" font-size="11" fill="#64748b">チェックで選択 / 解除。アコーディオンを展開すると底値表と同じ価格情報を確認できます（編集は不可）。</text>
+</svg>
